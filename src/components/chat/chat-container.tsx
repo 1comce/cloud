@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, use } from "react";
 import {
   Card,
   CardContent,
@@ -12,14 +12,16 @@ import { Document } from "../documents/document-list";
 import { MessageCircle } from "lucide-react";
 import { useStreamedChat } from "@/hooks/use-stream-chat";
 import { ScrollArea } from "../ui/scroll-area";
-import { postMessage } from "@/lib/apiAction";
+import { fetchMessages, postMessage } from "@/lib/apiAction";
 interface ChatContainerProps {
   selectedDocuments: Document[];
 }
 
 export default function ChatContainer({
   selectedDocuments,
-}: ChatContainerProps) {
+}: {
+  selectedDocuments: Document[];
+}) {
   const { isFinished, responseText, loading, error, sendQuestion } =
     useStreamedChat();
   const [messages, setMessages] = useState<Message[]>([]);
@@ -77,6 +79,14 @@ export default function ChatContainer({
       setIsLoading(false);
     }
   };
+  useEffect(() => {
+    const init = async () => {
+      const res = await fetchMessages();
+      console.log(res.data.getMessages);
+      setMessages((prev) => [...prev, ...res.data.getMessages]);
+    };
+    init();
+  }, []);
   useEffect(() => {
     if (isFinished) {
       setMessages((prev) => [

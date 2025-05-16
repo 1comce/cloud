@@ -22,7 +22,7 @@ export const useStreamedChat = () => {
       }
 
       let done = false;
-
+      const chunks = [];
       while (!done) {
         const {
           value,
@@ -31,9 +31,10 @@ export const useStreamedChat = () => {
         done = doneReading;
         const chunk = decoder.decode(value, { stream: true });
         setResponseText((prev) => prev + chunk);
+        chunks.push(chunk);
         // console.log(chunk);
       }
-      await postMessage(responseText, "assistant");
+      await postMessage(chunks.join(""), "assistant");
     } catch (err: any) {
       console.error("Streaming error:", err);
       setError(err.message || "Unknown error");

@@ -71,12 +71,11 @@ export const postMessage = async (content: string, role: string) => {
 };
 export const fetchMessages = async () => {
   const { userId } = await getAuthSession();
-  const res = await client.graphql({
+  const res: any = await client.graphql({
     query: getMessages,
     variables: {
       userId,
     },
   });
-  console.log(res);
   return res;
 };

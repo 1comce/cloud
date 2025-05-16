@@ -14,8 +14,6 @@ import { useToast } from "@/hooks/use-toast";
 import { useEffect } from "react";
 import { list } from "aws-amplify/storage";
 import LogoutForm from "./logout-form";
-import { fetchMessages } from "@/lib/apiAction";
-import { get } from "http";
 interface DashboardProps {
   user: { email: string };
 }
@@ -46,7 +44,6 @@ export default function Dashboard({ user }: DashboardProps) {
             uploadedAt: item.lastModified,
           }))
         );
-        await fetchMessages();
       } catch (error) {
         console.log(error);
       }
