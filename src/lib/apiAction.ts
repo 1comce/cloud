@@ -11,7 +11,7 @@ export const getAuthSession = async () => {
   const token = session.tokens?.accessToken;
   const userEmail = session.tokens?.idToken?.payload.email?.toString();
   const userId = session.tokens?.accessToken?.payload.sub;
-  console.log(session);
+  // console.log(session);
   return {
     credentials: session.credentials,
     tokens: token?.toString(),

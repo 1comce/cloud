@@ -60,7 +60,7 @@ export default function ChatContainer({
     await postMessage(content, "user");
     setCurrentId(`assistant-${Date.now()}`);
     try {
-      await sendQuestion(content);
+      await sendQuestion(content.trim());
     } catch (error) {
       setMessages((prev) =>
         prev.map((msg) =>
