@@ -119,7 +119,7 @@ export default function ChatContainer({
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({});
   }, [messages]);
 
   return (
@@ -164,7 +164,6 @@ export default function ChatContainer({
                   }}
                 />
               )}
-              <div ref={messagesEndRef} />
             </div>
           </ScrollArea>
           <ChatInput
@@ -176,6 +175,7 @@ export default function ChatContainer({
                 : "Ask a question about your documents..."
             }
           />
+          <div ref={messagesEndRef} />
         </div>
       </CardContent>
     </Card>
