@@ -165,6 +165,7 @@ export default function ChatContainer({
                 />
               )}
             </div>
+            <div ref={messagesEndRef} />
           </ScrollArea>
           <ChatInput
             onSendMessage={handleSendMessage}
@@ -175,7 +176,6 @@ export default function ChatContainer({
                 : "Ask a question about your documents..."
             }
           />
-          <div ref={messagesEndRef} />
         </div>
       </CardContent>
     </Card>
