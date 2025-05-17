@@ -6,14 +6,16 @@ import { Sha256 } from "@aws-crypto/sha256-js";
 import { generateClient } from "aws-amplify/api";
 import { sendMessage, getMessages } from "./graphql";
 const client = generateClient();
-
 export const getAuthSession = async () => {
   const session = await fetchAuthSession();
   const token = session.tokens?.accessToken;
+  const userEmail = session.tokens?.idToken?.payload.email?.toString();
   const userId = session.tokens?.accessToken?.payload.sub;
+  console.log(session);
   return {
     credentials: session.credentials,
     tokens: token?.toString(),
+    userEmail,
     userId,
   };
 };

@@ -1,13 +1,11 @@
 import { authConfig } from "@/config/auth";
 import { NextServer, createServerRunner } from "@aws-amplify/adapter-nextjs";
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth/server";
-
 export const { runWithAmplifyServerContext } = createServerRunner({
   config: {
     Auth: authConfig,
   },
 });
-
 export async function authenticatedUser(context: NextServer.Context) {
   return await runWithAmplifyServerContext({
     nextServerContext: context,

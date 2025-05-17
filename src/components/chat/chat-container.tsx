@@ -135,7 +135,7 @@ export default function ChatContainer({
         </CardDescription>
       </CardHeader>
       <CardContent className='flex-1 overflow-hidden p-0'>
-        <div className='flex flex-col'>
+        <div className='flex flex-col h-full'>
           <ScrollArea className='h-[42rem] w-full rounded-md border'>
             <div className='flex-1 overflow-y-auto p-4 chat-container'>
               {messages.length === 0 ? (

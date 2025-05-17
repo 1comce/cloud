@@ -7,7 +7,6 @@ import {
   resendSignUpCode,
 } from "aws-amplify/auth";
 import { getErrorMessage } from "@/utils/get-error-message";
-
 export async function handleSignUp(
   prevState: string | undefined,
   formData: FormData
@@ -88,7 +87,6 @@ export async function handleSignIn(
   } catch (error) {
     return getErrorMessage(error);
   }
-
   redirect(redirectLink);
 }
 

@@ -1,4 +1,4 @@
 import Dashboard from "@/components/dashboard/dashboard";
-export default function Page() {
+export default async function Page() {
   return <Dashboard user={{ email: "user" }} />;
 }
